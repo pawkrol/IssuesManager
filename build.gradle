@@ -9,6 +9,17 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
+
+plugins {
+	id 'io.franzbecker.gradle-lombok' version '1.11'
+	id 'java'
+}
+
+lombok {
+	version = "1.16.4"
+	sha256 = "3ca225ce3917eac8bf4b7d2186845df4e70dcdede356dca8537b6d78a535c91e"
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
@@ -24,6 +35,7 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
 //	compile('org.springframework.boot:spring-boot-starter-security')
 //    compile('org.springframework.security.oauth:spring-security-oauth2')
 

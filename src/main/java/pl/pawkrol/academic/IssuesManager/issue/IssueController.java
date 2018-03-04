@@ -1,14 +1,25 @@
 package pl.pawkrol.academic.IssuesManager.issue;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/issue")
 public class IssueController {
 
-    @GetMapping("/issue")
-    public String issue() {
-        return "This is an example issue";
+    @Autowired
+    private IssueService issueService;
+
+    @PutMapping("/save")
+    Issue save(@RequestBody Issue issue) {
+        return issueService.saveIssue(issue);
     }
 
+    @GetMapping("/all")
+    List<Issue> getAll() {
+        return issueService.getAll();
+    }
 }
