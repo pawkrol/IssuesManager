@@ -8,11 +8,19 @@ import java.util.List;
 @Service
 public class IssueService {
 
+    private final IssueRepository issueRepository;
+
     @Autowired
-    private IssueRepository issueRepository;
+    public IssueService(IssueRepository issueRepository) {
+        this.issueRepository = issueRepository;
+    }
 
     Issue saveIssue(Issue issue) {
         return issueRepository.save(issue);
+    }
+
+    Issue getById(String id) {
+        return issueRepository.findOne(id);
     }
 
     List<Issue> getAll() {
