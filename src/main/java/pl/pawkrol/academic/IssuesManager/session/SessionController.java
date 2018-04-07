@@ -1,6 +1,7 @@
 package pl.pawkrol.academic.IssuesManager.session;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -25,7 +26,7 @@ class SessionController {
     private final TokenStore tokenStore;
 
     @Autowired
-    public SessionController(UserService userService, TokenStore tokenStore) {
+    public SessionController(UserService userService, @Qualifier("getTokenStore") TokenStore tokenStore) {
         this.userService = userService;
         this.tokenStore = tokenStore;
     }

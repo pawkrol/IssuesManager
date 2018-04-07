@@ -9,8 +9,12 @@ import java.util.List;
 @RequestMapping("/issue")
 public class IssueController {
 
+    private final IssueService issueService;
+
     @Autowired
-    private IssueService issueService;
+    public IssueController(IssueService issueService) {
+        this.issueService = issueService;
+    }
 
     @PutMapping("/save")
     Issue save(@RequestBody Issue issue) {

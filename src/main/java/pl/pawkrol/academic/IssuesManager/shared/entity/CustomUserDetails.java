@@ -10,11 +10,13 @@ import java.util.stream.Collectors;
 
 public class CustomUserDetails implements UserDetails{
 
+    private String id;
     private String username;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
     public CustomUserDetails(User user) {
+        this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.authorities = user.getRoles()
@@ -29,6 +31,10 @@ public class CustomUserDetails implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override
