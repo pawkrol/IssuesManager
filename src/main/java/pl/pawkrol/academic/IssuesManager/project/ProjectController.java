@@ -1,6 +1,7 @@
 package pl.pawkrol.academic.IssuesManager.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +25,11 @@ public class ProjectController {
     @GetMapping("/all")
     List<Project> all() {
         return projectService.getAll();
+    }
+
+    @DeleteMapping("/remove")
+    ResponseEntity remove(@RequestParam String id) {
+        projectService.remove(id);
+        return ResponseEntity.ok().build();
     }
 }

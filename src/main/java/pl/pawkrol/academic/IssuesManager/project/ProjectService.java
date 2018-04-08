@@ -8,10 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.pawkrol.academic.IssuesManager.shared.entity.CustomUserDetails;
-import pl.pawkrol.academic.IssuesManager.user.User;
-import pl.pawkrol.academic.IssuesManager.user.UserService;
 
-import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -36,6 +33,10 @@ public class ProjectService {
         query.addCriteria(Criteria.where("userId").is(getUserId()));
 
         return mongoTemplate.find(query, Project.class);
+    }
+
+    public void remove(String id) {
+        projectRepository.delete(id);
     }
 
     private String getUserId() {
