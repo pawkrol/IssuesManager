@@ -1,5 +1,6 @@
 package pl.pawkrol.academic.IssuesManager.shared.entity.role;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -9,6 +10,7 @@ import org.springframework.data.annotation.Id;
 public class Role {
 
     @Id
+    @JsonIgnore
     private String id;
 
     private String name;

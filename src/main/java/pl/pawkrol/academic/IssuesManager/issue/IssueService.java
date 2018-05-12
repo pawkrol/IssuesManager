@@ -1,7 +1,11 @@
 package pl.pawkrol.academic.IssuesManager.issue;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
+import pl.pawkrol.academic.IssuesManager.session.SessionService;
 
 import java.util.List;
 
@@ -9,13 +13,19 @@ import java.util.List;
 public class IssueService {
 
     private final IssueRepository issueRepository;
+    private MongoTemplate mongoTemplate;
+    private SessionService sessionService;
 
     @Autowired
-    public IssueService(IssueRepository issueRepository) {
+    public IssueService(IssueRepository issueRepository, MongoTemplate mongoTemplate,
+                        SessionService sessionService) {
         this.issueRepository = issueRepository;
+        this.mongoTemplate = mongoTemplate;
+        this.sessionService = sessionService;
     }
 
     Issue saveIssue(Issue issue) {
+        issue.setReporterUserId(sessionService.getUserId());
         return issueRepository.save(issue);
     }
 
@@ -23,7 +33,10 @@ public class IssueService {
         return issueRepository.findOne(id);
     }
 
-    List<Issue> getAll() {
-        return issueRepository.findAll();
+    List<Issue> getAll(String projectId) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("projectId").is(projectId));
+
+        return mongoTemplate.find(query, Issue.class);
     }
 }

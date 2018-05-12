@@ -8,7 +8,7 @@ import pl.pawkrol.academic.IssuesManager.user.User;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class CustomUserDetails implements UserDetails{
+public class CustomUserDetails implements UserDetails {
 
     private String id;
     private String username;
