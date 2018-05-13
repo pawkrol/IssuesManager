@@ -22,6 +22,11 @@ public class IssueController {
         return issueService.saveIssue(issue);
     }
 
+    @GetMapping("/get/{issueId}")
+    Issue getById(@PathVariable String issueId) {
+        return issueService.getById(issueId);
+    }
+
     @GetMapping("/all/{projectId}")
     List<Issue> getAll(@PathVariable String projectId) {
         return issueService.getAll(projectId);

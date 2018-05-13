@@ -22,6 +22,11 @@ public class ProjectController {
         return projectService.saveProject(project);
     }
 
+    @GetMapping("/get/{projectId}")
+    Project getById(@PathVariable String projectId) {
+        return projectService.getById(projectId);
+    }
+
     @GetMapping("/all")
     List<Project> all() {
         return projectService.getAll();
