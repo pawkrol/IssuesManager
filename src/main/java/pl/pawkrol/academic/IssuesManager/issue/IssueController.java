@@ -1,6 +1,7 @@
 package pl.pawkrol.academic.IssuesManager.issue;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,14 @@ public class IssueController {
     @PostMapping("/update")
     Issue update(@RequestBody Issue issue) {
         return issueService.saveIssue(issue);
+    }
+
+    @DeleteMapping("/delete/{issueId}")
+    ResponseEntity delete(@PathVariable String issueId) {
+        issueService.deleteIssue(issueId);
+        return ResponseEntity
+                .ok()
+                .build();
     }
 
     @GetMapping("/get/{issueId}")

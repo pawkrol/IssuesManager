@@ -33,6 +33,10 @@ public class IssueService {
         return issueRepository.save(issue);
     }
 
+    void deleteIssue(String id) {
+        issueRepository.delete(id);
+    }
+
     Issue getById(String id) {
         return issueRepository.findOne(id);
     }
