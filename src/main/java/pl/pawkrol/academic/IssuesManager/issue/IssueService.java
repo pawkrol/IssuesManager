@@ -25,7 +25,11 @@ public class IssueService {
     }
 
     Issue saveIssue(Issue issue) {
-        issue.setReporterUserId(sessionService.getUserId());
+        if (issue.getId() == null) {
+            issue.setReporterUserId(sessionService.getUserId());
+            issue.setState(Issue.State.TODO);
+        }
+
         return issueRepository.save(issue);
     }
 

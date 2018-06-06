@@ -8,7 +8,9 @@ import javax.validation.constraints.NotNull;
 @Data
 class Issue {
 
-    private enum Priority { HIGH, MEDIUM, LOW }
+    public enum Priority { HIGH, MEDIUM, LOW }
+
+    public enum State { TODO, IN_PROGRESS, DONE }
 
     @Id
     private String id;
@@ -24,6 +26,8 @@ class Issue {
     private String description;
 
     private Priority priority;
+
+    private State state;
 
     @NotNull
     private String reporterUserId;

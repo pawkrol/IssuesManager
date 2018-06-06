@@ -22,6 +22,11 @@ public class IssueController {
         return issueService.saveIssue(issue);
     }
 
+    @PostMapping("/update")
+    Issue update(@RequestBody Issue issue) {
+        return issueService.saveIssue(issue);
+    }
+
     @GetMapping("/get/{issueId}")
     Issue getById(@PathVariable String issueId) {
         return issueService.getById(issueId);
